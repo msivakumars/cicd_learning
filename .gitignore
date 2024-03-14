@@ -1,1 +1,4 @@
-./terraform_code/V2-EC2.tf
+**/*.terraform.lock.*
+**/*.tfstate
+**/*.tfstate.*
+**/.terraform/*
