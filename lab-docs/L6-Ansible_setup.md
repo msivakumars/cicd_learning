@@ -13,16 +13,23 @@ Add jenkins master and slave private IPs in the inventory file
 in this case, we are using /opt is our working directory for Ansible. 
    ```
     [jenkins-master]
-    18.209.18.194
+    10.0.1.202
     [jenkins-master:vars]
-    ansible_user=ec2-user
-    ansible_ssh_private_key_file=/opt/dpo.pem
-    [jenkins-slave]
-    54.224.107.148
-    [jenkins-slave:vars]
-    ansible_user=ec2-user
-    ansible_ssh_private_key_file=/opt/dpo.pem
+    <!-- ansible_user=ec2-user -->
+    ansible_user=ubuntu
+    ansible_ssh_private_key_file=/opt/dpp.pem
+    [build-slave]
+    10.0.1.236
+    [build-slave:vars]
+    <!-- ansible_user=ec2-user -->
+    ansible_user=ubuntu
+    ansible_ssh_private_key_file=/opt/dpp.pem
    ```
+After creating /opt/hosts file, move the dpp.pem file from your local system to ansibleserver/home/ubuntu through mobax
+then move the file to /opt ---> mv dpp.pem /opt/
+then change the permission to 400 (only read access)---> chmod 400 dpp.pem
+ansible all -i hosts -m ping
+
 
 1. Test the connection  
    ```sh
